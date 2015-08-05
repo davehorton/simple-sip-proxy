@@ -34,7 +34,7 @@ app.use(function onlyInvites( req, res, next ) {
   next() ;
 }); 
 
-require('/lib/proxy.js')(app); 
+require('./lib/proxy.js')(app); 
 
 //handle any errors thrown while executing middleware stack
 app.use(function myErrorHandler(err, req, res, next) {
