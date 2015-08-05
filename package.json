@@ -1,0 +1,30 @@
+{
+  "name": "simple-sip-proxy",
+  "version": "1.0.0",
+  "description": "Simple load balancing sip proxy",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davehorton/simple-sip-proxy.git"
+  },
+  "keywords": [
+    "sip",
+    "drachtio",
+    "proxy"
+  ],
+  "author": "Dave Horton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davehorton/simple-sip-proxy/issues"
+  },
+  "homepage": "https://github.com/davehorton/simple-sip-proxy#readme",
+  "dependencies": {
+    "debug": "*",
+    "drachtio": "^0.1.1",
+    "lodash": "~2.4.1",
+    "range_check": "0.0.5"
+  }  
+}
