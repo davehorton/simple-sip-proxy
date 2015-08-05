@@ -1,0 +1,34 @@
+'use strict';
+
+
+// copy to config.js and add your info
+// =================================
+module.exports = {
+
+  //drachtio server to connect to
+  drachtioServer: {
+    address: '127.0.0.1',
+    port: 9022,
+    secret: 'cymru'
+  }, 
+
+  //array of one or more sip servers to send to
+  targets: [
+    {
+      address: 'ip-address-server1',    //ip address of server
+      port: 6060,                       //sip port (optional: defaults to 5060 if not provided)
+      optionsPing: true,                //send OPTIONS request to test if server is up (optional: defaults to false)
+      enabled: true                     //if false, skip this destination (note: you can edit while running and it will take affect)
+    },
+    {
+      address: 'ip-address-server2',    //ip address of server
+      optionsPing: true,                //send OPTIONS request to test if server is up (optional: defaults to false)
+      enabled: true
+    }
+  ], 
+
+  optionsPingInterval: 5,                //interval in seconds between OPTIONS ping to a server
+
+  authorizedSources: ['68.64.80.0/24']   // array of CIDRs for servers that are allowed to send to us
+
+} ;
