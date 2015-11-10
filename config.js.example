@@ -27,7 +27,7 @@ module.exports = {
     }
   ], 
 
-  optionsPingInterval: 5,                //interval in seconds between OPTIONS ping to a server
+  optionsPingInterval: 5000,                //interval in millisseconds between OPTIONS ping to a server
 
   authorizedSources: ['68.64.80.0/24']   // array of CIDRs for servers that are allowed to send to us
 
