@@ -27,7 +27,11 @@ module.exports = {
     }
   ], 
 
-  optionsPingInterval: 5000,                //interval in millisseconds between OPTIONS ping to a server
+  optionsPingInterval: 60000,                //interval in millisseconds between OPTIONS ping to a server when server is up
+
+  pingIntervalWhenOffline: 5000,              //ping interval in millseconds when server is offline
+
+  proxyWhenAllTargetsOffline: false,        //if true, when all targets appear down try proxying to one anyways rather than return failure
 
   authorizedSources: ['68.64.80.0/24']   // array of CIDRs for servers that are allowed to send to us
 
