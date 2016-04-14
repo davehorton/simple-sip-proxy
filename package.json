@@ -23,7 +23,7 @@
   "homepage": "https://github.com/davehorton/simple-sip-proxy#readme",
   "dependencies": {
     "debug": "*",
-    "drachtio": "https://github.com/davehorton/drachtio.git",
+    "drachtio": "davehorton/drachtio.git",
     "lodash": "~2.4.1",
     "range_check": "0.0.5"
   }  
