@@ -4,7 +4,10 @@
   "description": "Simple load balancing sip proxy",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test node test/ | ./node_modules/.bin/tap-spec",
+    "coverage": "NODE_ENV=test ./node_modules/.bin/istanbul cover test/ --report html",
+    "debug-test": "NODE_ENV=test node --nolazy --inspect-brk=9229 test/",
+    "jslint": "eslint lib"
   },
   "repository": {
     "type": "git",
@@ -22,8 +25,18 @@
   },
   "homepage": "https://github.com/davehorton/simple-sip-proxy#readme",
   "dependencies": {
+    "clear-module": "^3.0.0",
     "config": "^2.0.1",
-    "drachtio-srf": "^4.4.0",
+    "drachtio-srf": "davehorton/drachtio-srf#v4.4.1-rc2",
     "pino": "^5.8.1"
+  },
+  "devDependencies": {
+    "blue-tape": "^1.0.0",
+    "debug": "^4.1.0",
+    "drachtio-sip": "^0.3.6",
+    "istanbul": "^0.4.5",
+    "sip-message-examples": "0.0.4",
+    "tap-dot": "^2.0.0",
+    "tap-spec": "^5.0.0"
   }
 }

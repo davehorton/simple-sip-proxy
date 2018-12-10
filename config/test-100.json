@@ -1,0 +1,58 @@
+{
+  "drachtio": {
+    "host": "127.0.0.1",
+    "port": 9061,
+    "secret": "cymru"
+  },
+  "log": {
+    "level": "info"
+  },
+  "trunks": {
+    "outside": {
+      "carrier-1": {
+        "direction": "in",
+        "address": "172.19.0.100"
+      },
+      "carrier-2": {
+        "direction": "out",
+        "address": "172.19.0.101"
+      }
+    },
+    "inside": {
+      "freeswitch-1": {
+        "address": "172.19.0.21",
+        "options-ping": false
+      },
+      "freeswitch-2": {
+        "address": "172.19.0.22",
+        "options-ping": false
+      },
+      "freeswitch-3": {
+        "address": "172.19.0.23",
+        "options-ping": false
+      },
+      "freeswitch-4": {
+        "address": "172.19.0.24",
+        "options-ping": false
+      },
+      "sipp-online": {
+        "address": "172.19.0.110",
+        "options-ping": true,
+        "options-timeout": 1000,
+        "options-interval": 3000
+      },
+      "sipp-offline": {
+        "address": "172.19.0.111",
+        "options-ping": true,
+        "options-timeout": 1000,
+        "options-interval": 3000
+      },
+      "sipp-noexist": {
+        "address": "172.19.0.121",
+        "options-ping": true,
+        "options-timeout": 1000,
+        "options-interval": 3000
+      }
+    }
+  }
+}
