@@ -23,7 +23,7 @@ test('end-to-end tests', (t) => {
           if (err) return reject(err);
           resolve();
         });
-      })
+      });
     })
     .then(() => {
       return new Promise((resolve, reject) => {
@@ -35,9 +35,7 @@ test('end-to-end tests', (t) => {
         }, 4000);
       });
     })
-    /*
     .then(() => {
-      t.pass('application connected to drachtio server');
       obj = require('./sipp')('test_testbed', '172.19.0.50');
       return obj.sippUac('uac-expect-403.xml');
     })
@@ -51,7 +49,6 @@ test('end-to-end tests', (t) => {
     .then(() => {
       return t.pass('INVITE successfully proxied with defaults when no routing specified');
     })
-    */
     .then(() => {
       srf.emit('disconnect');
       srf.disconnect();

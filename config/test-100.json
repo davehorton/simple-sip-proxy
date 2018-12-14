@@ -15,7 +15,7 @@
       },
       "carrier-2": {
         "direction": "out",
-        "address": "172.19.0.101"
+        "address": "172.19.0.112"
       }
     },
     "inside": {
@@ -53,6 +53,15 @@
         "options-timeout": 1000,
         "options-interval": 3000
       }
+    }
+  }, 
+  "routes": {
+    "inside": {
+      "default": [
+        "172.19.0.21",
+        "172.19.0.22", 
+        "172.19.0.23"
+      ]
     }
   }
 }

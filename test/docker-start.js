@@ -34,7 +34,6 @@ function testFreeswitches(arr, timeout, callback) {
 function testOneFsw(arr, fsw, callback) {
   exec(`docker exec ${fsw} fs_cli -x "console loglevel debug"`, (err, stdout, stderr) => {
     if (!err) {
-      console.log(`freeswitch ${fsw} is ready`);
       const idx = arr.indexOf(fsw);
       arr.splice(idx, 1);
     }

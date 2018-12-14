@@ -1,0 +1,20 @@
+sudo: required
+
+dist: xenial
+
+language: node_js
+
+node_js:
+  - "lts/*"
+
+services:
+  - docker
+
+before_install:
+  - docker pull drachtio/drachtio-server:latest
+  - docker pull drachtio/sipp:latest
+  - docker pull davehorton/freeswitch-hairpin:latest
+  - docker images
+
+script:
+  - npm test

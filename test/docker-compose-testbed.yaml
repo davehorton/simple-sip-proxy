@@ -62,3 +62,13 @@ services:
       testbed:
         ipv4_address: 172.19.0.111
 
+  sipp-uas:
+    image: drachtio/sipp:latest
+    command: sipp -sf /tmp/uas.xml
+    volumes:
+      - ./scenarios:/tmp
+    tty: true
+    networks:
+      testbed:
+        ipv4_address: 172.19.0.112
+
