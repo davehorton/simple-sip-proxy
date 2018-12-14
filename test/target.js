@@ -32,8 +32,8 @@ test('Target', (t) => {
   }
   const score1 = Math.floor(results['10.10.100.1'] / 1000 * 100);
   const score2 = Math.floor(results['10.10.100.2'] / 1000 * 100);
-  t.ok(score1 > 28 && score1 < 37, 'using weighted averages, appserver1 gets ~33%');
-  t.ok(score2 > 63 && score2 < 72, 'using weighted averages, appserver2 gets ~66%');
+  t.ok(score1 > 27 && score1 < 38, 'using weighted averages, appserver1 gets ~33%');
+  t.ok(score2 > 62 && score2 < 73, 'using weighted averages, appserver2 gets ~66%');
 
   target = new Target('appserver1', config);
   t.deepEqual(target.entries, [{dest: '10.10.200.1', weight: 1}], 'supplying inside trunk name works');
