@@ -1,0 +1,80 @@
+{
+  "drachtio": {
+    "host": "127.0.0.1",
+    "port": 9022,
+    "secret": "cymru"
+  },
+  "external-trunks": {
+    "carrier-1": {
+      "type": "in",
+      "signaling-address": ["10.10.100.1:5060", "10.10.100.2:5060"],
+      "enabled": false
+    },
+    "carrier-2": {
+      "type": "out",
+      "signaling-address": "10.10.100.5",
+      "groups": "cheap"
+    },
+    "carrier-3": {
+      "type": "both",
+      "signaling-address": "10.10.100.6",
+      "groups": ["cheap", "international"]
+    }
+  },
+  "internal-trunks": {
+    "appserver1": {
+      "signaling-address": "10.10.200.1",
+      "options-ping": true,
+      "enabled": true
+    },
+    "appserver2": {
+      "signaling-address": "10.10.200.2",
+      "options-ping": true,
+      "enabled": false
+    }
+  },
+  "options-ping": {
+    "interval": "6000"
+  },
+  "proxy-request-types": ["INVITE"],
+  "routing": {
+    "outbound": {
+      "default": [
+        {
+          "target": "carrier-2",
+          "ratio": 9
+        },
+        {
+          "target": "carrier-1",
+          "ratio": 1
+        }
+      ]
+    },
+    "international": {
+      "regex": "+?1\\d{10}",
+      "match": ["international"]
+    },
+    "toll-free": {
+      "regex": "+?1\\d{10}",
+      "match": ["carrier-2"],
+      "no-match": ["carrier-3"]
+    },
+    "test": {
+      "regex": "+15083084809",
+      "against": "from",
+      "match": ["carrier-2"]
+    }
+  },
+  "inbound": {
+    "default": [
+      {
+        "target": "appserver1",
+        "ratio": 2
+      },
+      {
+        "target": "appserver2",
+        "ratio": 1
+      }
+    ]
+  }
+}

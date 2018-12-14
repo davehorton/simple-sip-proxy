@@ -1,0 +1,74 @@
+version: '2'
+
+networks:
+  testbed:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+
+services:
+  drachtio:
+    image: drachtio/drachtio-server:latest
+    command: drachtio --contact "sip:*;transport=udp" --loglevel debug --sofia-loglevel 9
+    container_name: drachtio
+    ports:
+      - "9061:9022/tcp"
+    networks:
+      testbed:
+        ipv4_address: 172.19.0.10
+
+  as1:
+    image: davehorton/freeswitch-hairpin:latest
+    container_name: freeswitch-1
+    command: freeswitch --sip-port 5060
+    networks:
+      testbed:
+        ipv4_address: 172.19.0.21
+
+  as2:
+    image: davehorton/freeswitch-hairpin:latest
+    command: freeswitch --sip-port 5060
+    container_name: freeswitch-2
+    networks:
+      testbed:
+        ipv4_address: 172.19.0.22
+
+  as3:
+    image: davehorton/freeswitch-hairpin:latest
+    command: freeswitch --sip-port 5060
+    container_name: freeswitch-3
+    networks:
+      testbed:
+        ipv4_address: 172.19.0.23
+
+  sipp-uas-options-ok:
+    image: drachtio/sipp:latest
+    command: sipp -sf /tmp/uas-options-200.xml
+    volumes:
+      - ./scenarios:/tmp
+    tty: true
+    networks:
+      testbed:
+        ipv4_address: 172.19.0.110
+
+  sipp-uas-options-fail:
+    image: drachtio/sipp:latest
+    command: sipp -sf /tmp/uas-options-503.xml
+    volumes:
+      - ./scenarios:/tmp
+    tty: true
+    networks:
+      testbed:
+        ipv4_address: 172.19.0.111
+
+  sipp-uas:
+    image: drachtio/sipp:latest
+    command: sipp -sf /tmp/uas.xml
+    volumes:
+      - ./scenarios:/tmp
+    tty: true
+    networks:
+      testbed:
+        ipv4_address: 172.19.0.112
+

@@ -1,0 +1,79 @@
+{
+  "drachtio": {
+    "host": "127.0.0.1",
+    "port": 9022,
+    "secret": "cymru"
+  },
+  "trunks": {
+    "outside": {
+      "carrier-1": {
+        "direction": "in",
+        "address": "10.10.100.1:5060",
+        "enabled": false
+      },
+      "carrier-2": {
+        "direction": "out",
+        "address": "10.10.100.5",
+        "groups": "cheap"
+      },
+      "carrier-3": {
+        "direction": "both",
+        "address": ["10.10.100.6","10.10.100.7"],
+        "groups": ["cheap", "international"]
+      }, 
+      "carrier-4": {
+        "direction": "out",
+        "address": "10.10.100.8",
+        "enabled": false,
+        "groups": "cheap"
+      }
+    },
+    "inside": {
+      "appserver1": {
+        "address": "10.10.200.1",
+        "options-ping": true,
+        "groups": "standby",
+        "enabled": true
+      },
+      "voicemail": {
+        "address": "10.10.200.99",
+        "options-ping": true,
+        "groups": ["media-processing", "storage"],
+        "enabled": true
+      },
+      "appserver2": {
+        "address": ["10.10.200.2", "10.10.200.6"],
+        "options-ping": true,
+        "enabled": false
+      }  
+    }
+  },
+  "routes": {
+    "outside": {
+      "international": {
+        "regex": "\\+?1\\d{10}",
+        "match": ["international"]
+      },
+      "toll-free": {
+        "regex": "\\+?1\\d{10}",
+        "match": ["carrier-2"],
+        "no-match": "carrier-3"
+      },
+      "test": {
+        "regex": "^4083084809$",
+        "against": "from",
+        "match": ["carrier-2"]
+      },
+      "default": [
+        {
+          "dest": "carrier-2",
+          "weight": 9
+        },
+        {
+          "dest": "carrier-1",
+          "weight": 1
+        }
+      ]
+    }
+  }
+}
